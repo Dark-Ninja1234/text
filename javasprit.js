@@ -244,6 +244,7 @@ const shop =
 const input = document.getElementsByClassName('inputtext')[0]; 
 
 const spancontainertag = document.getElementsByClassName("spancontainer")[0];
+const listtag  = document.getElementsByClassName("list")[0];
 
 let fitertag = [];
 input.addEventListener("keyup",(event) =>
@@ -292,32 +293,59 @@ input.addEventListener("keyup",(event) =>
  let sleat = (key) => {
   if( key === "ArrowDown") {
     if (timemar === fitertag.length -1 ) {
-      const selectdiv3 = document.getElementsByClassName("newdiv")[0];
-    selectdiv3.style.backgroundColor = "white"
-    selectdiv3.firstChild.style.color = "black"
-    selectdiv3.classList.remove("newdiv")
+      fun1()
       timemar = -1;
       return
     }
     timemar += 1;
-  const selectdiv1 = fitertag[timemar].id.toString();
-  const selectdiv2 = document.getElementById(selectdiv1);
-  
-  selectdiv2.style.backgroundColor = "blue";
-  selectdiv2.firstChild.style.color = "white";
+  const selectdiv2 = fun2(timemar);
   if (timemar > 0){
-    const selectdiv3 = document.getElementsByClassName("newdiv")[0];
-    selectdiv3.style.backgroundColor = "white"
-    selectdiv3.firstChild.style.color = "black"
-    selectdiv3.classList.remove("newdiv")
+   fun1()
 
   }
   selectdiv2.classList.add("newdiv");
   
 
 
-  } /*else if (key ==="ArrowUp" ){
+  } else if (key ==="ArrowUp" ){
 
-  }else*/
+    if (timemar === -1) {
+     return
+    }
+    if (timemar === 0) {
+      fun1();
+      timemar = -1;
+      return
+    }
+    timemar -= 1;
+    fun1()
+    const selectdiv2 = fun2(timemar);
+    selectdiv2.classList.add("newdiv");
+  }else{
+    const enter = fun2(timemar);
+    spancontainertag.remove();
+    
+    listtag.append(enter);
+  }
 
+}
+const fun2 = ( index) => {
+  const selectdiv1 = fitertag[index].id.toString();
+  const selectdiv2 = document.getElementById(selectdiv1);
+  
+  selectdiv2.style.backgroundColor = "blue";
+  selectdiv2.firstChild.style.color = "white";
+  return selectdiv2;
+}
+const  fun1 = () => {
+  const selectdiv3 = document.getElementsByClassName("newdiv")[0];
+    selectdiv3.style.backgroundColor = "white"
+    selectdiv3.firstChild.style.color = "black"
+    selectdiv3.classList.remove("newdiv")
+}
+const fun3 = ( index) => {
+  const selectdiv1 = fitertag[index].id.toString();
+  const selectdiv2 = document.getElementById(selectdiv1);
+  selectdiv2.style.backgroundColor = "white";
+  selectdiv2.firstChild.style.color = "white";
 }
